@@ -19,11 +19,23 @@ Search for artists currently on tour using `node liri.js concert-this **any arti
 ### Search Spotify (`spotify-this-song`)
 Search for any song using `node liri.js spotify-this-song **any song**`. LIRI will search the node-spotify-api for the selected song and return the first result. See example below:
 
+![image2](/images/spotify-this-song.png)
+
+If no song is selected:
+
+![image3](/images/spotify-this-song-sign.png)
 
 ### Search OMDB (`movie-this`)
 Search for any movie using `node liri.js movie-this **any movie**`. LIRI will search the OMDB API for the selected movie and return the first result. See example below:
 
+![image4](/images/movie-this.png)
+
+If no movie is selected:
+
+![image5](/images/movie-this-nobody.png)
 
 ### Random Search (`do-what-it-says`)
 Searches the text file and runs the search listed along with the listed parameter using `node liri.js do-what-it-says`. See example below:
+
+![image6](/images/do-what-it-says.png)
 
