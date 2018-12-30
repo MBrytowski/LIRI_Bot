@@ -8,8 +8,6 @@ var moment = require("moment");
 
 var divider = "\n------------------------------------------------------------\n";
 
-//switch case - use bank exercise
-
 var search = process.argv[2];
 var value = process.argv.slice(3).join(" ");
 
@@ -39,11 +37,11 @@ function runLiri(search, value) {
 
 function showConcert(value) {
     console.log("Looking for your concert...");
-    
+
     var URL = "https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp";
 
     axios.get(URL).then(function (response) {
-        var jsonData = response.data[1];
+        var jsonData = response.data[0];
 
         var concertData = [
             "Venue Name: " + jsonData.venue.name,
@@ -51,8 +49,8 @@ function showConcert(value) {
             "Date: " + moment(jsonData.datetime).format("MM/DD/YYYY")
         ].join("\n");
 
-        fs.appendFile("log.txt", concertData + divider, function(err) {
-          if (err) throw err;
+        fs.appendFile("log.txt", concertData + divider, function (err) {
+            if (err) throw err;
         });
 
         console.log(divider + concertData + divider);
@@ -72,7 +70,7 @@ function showSong(value) {
     spotify.search({
         type: "track",
         query: value,
-        limit: 2
+        limit: 1
     }).then(function (response) {
         var spotifyData = response.tracks.items;
         // console.log(spotifyData);
@@ -89,9 +87,11 @@ function showSong(value) {
             console.log(divider);
 
 
-            fs.appendFile("log.txt", artist + songName + link + album + divider, function(err) {
-              if (err) throw err;
-            });
+            fs.appendFile("log.txt", "\nArtist(s): " + artist + "\nSong Name: " + songName +
+                "\nLink: " + link + "\nAlbum: " + album + divider,
+                function (err) {
+                    if (err) throw err;
+                });
         };
     }).catch(function (err) {
         console.log(err);
@@ -124,8 +124,8 @@ function showMovie(value) {
 
         console.log(divider + movieData + divider);
 
-        fs.appendFile("log.txt", movieData + divider, function(err) {
-          if (err) throw err;
+        fs.appendFile("log.txt", movieData + divider, function (err) {
+            if (err) throw err;
         });
 
     }).catch(function (err) {
